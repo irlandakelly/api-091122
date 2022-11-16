@@ -10,9 +10,11 @@ const getTodos = (request, response) => {
     console.log("en el get")
     connection.query("SELECT * FROM alumnos", 
     (error, results) => {
-        if(error)
-            throw error;
-        response.status(200).json(results);
+        if(error){
+            response.json({"resultado":"no"})
+        }else{
+            response.status(200).json({"success":"ok", results})
+        }
     });
 };
 
@@ -26,9 +28,11 @@ const postAlumno = (request, response) => {
     connection.query("INSERT INTO alumnos(matricula, nombre, correo,telefono) VALUES (?,?,?,?) ", 
     [matricula, nombre, correo, telefono],
     (error, results) => {
-        if(error)
-            throw error;
-        response.status(201).json({"Registro agregado correctamente.": results.affectedRows});
+        if(error){
+            response.json({"resultado":"no"})
+        }else{
+            response.json({"resultado":"ok"})
+        }
     });
 };
 
@@ -42,9 +46,11 @@ const delAlumno = (request, response) => {
     connection.query("DELETE FROM alumnos WHERE matricula = ?", 
     [id],
     (error, results) => {
-        if(error)
-            throw error;
-        response.status(201).json({"Registro eliminado correctamente.":results.affectedRows});
+        if(error){
+            response.json({"resultado":"no"})
+        }else{
+            response.json({"resultado":"ok"})
+        }
     });
 };
 
