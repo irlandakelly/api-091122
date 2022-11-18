@@ -13,7 +13,7 @@ const getTodos = (request, response) => {
         if(error){
             response.json({"resultado":"no"})
         }else{
-            response.status(200).json({"success":"ok", results})
+            response.status(200).json(results)
         }
     });
 };
@@ -50,6 +50,7 @@ const delAlumno = (request, response) => {
             response.json({"resultado":"no"})
         }else{
             response.json({"resultado":"ok"})
+            
         }
     });
 };
